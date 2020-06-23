@@ -1,37 +1,42 @@
-class Character {
-  constructor(image){
-    this.image = image;
-    this.matrix = [
-      [0, 0],
-      [220, 0],
-      [440, 0],
-      [660, 0],
-      [0, 270],
-      [220, 270],
-      [440, 270],
-      [660, 270],
-      [0, 540],
-      [220, 540],
-      [440, 540],
-      [660, 540],
-      [0, 810],
-      [220, 810],
-      [440, 810],
-      [660, 810],
-    ];
-    this.currentFrame = 0;
+class Character extends Animation {
+  constructor(matrix, charImage, x, imageWidth, imageHeight, spriteWidth, spriteHeight){
+    super(matrix, charImage, x, imageWidth, imageHeight, spriteWidth, spriteHeight);
+
+    this.groundPosition = height - this.imageHeight;
+    this.y = this.groundPosition;
+    this.jumpingSpeed = 0;
+    this.gravity = 5;
   }
   
-  shows(){
-    image(this.image, 0, height-145, 110, 135, this.matrix[this.currentFrame][0], this.matrix[this.currentFrame][1], 220, 270);
+  jump() {
+    this.jumpingSpeed = -50;
+  }
+  
+  appliesGravity() {
+    this.y = this.y + this.jumpingSpeed;
+    this.jumpingSpeed = this.jumpingSpeed + this.gravity;
     
-    this.animate();
+    if (this.y > this.groundPosition) { // prevines character from falling off the ground 
+      this.y = this.groundPosition;
+    }
   }
   
-  animate(){
-    this.currentFrame++;
-    if (this.currentFrame === this.matrix.length-1) {
-      this.currentFrame = 0;
-    }  
-  }  
+  collisionDetection(enemy) { // returns true if the two objects are colliding
+    noFill();
+    rect(this.x, this.y, this.imageWidth, this.imageHeight);
+    rect(enemy.x, enemy.y, enemy.imageWidth, enemy.imageHeight);
+    const precision = .7; // increases rect coverage accuracy by lowering the hitbox
+    const collision = collideRectRect(
+      this.x, 
+      this.y, 
+      this.imageWidth * precision, 
+      this.imageHeight * precision,
+      enemy.x,
+      enemy.y,
+      enemy.imageWidth * precision,
+      enemy.imageHeight * precision
+    );
+    
+    return collision;
+  }
 }
