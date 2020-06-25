@@ -1,8 +1,8 @@
 class Character extends Animation {
-  constructor(matrix, charImage, x, imageWidth, imageHeight, spriteWidth, spriteHeight){
-    super(matrix, charImage, x, imageWidth, imageHeight, spriteWidth, spriteHeight);
-
-    this.groundPosition = height - this.imageHeight;
+  constructor(matrix, charImage, x, yModifier, imageWidth, imageHeight, spriteWidth, spriteHeight){
+    super(matrix, charImage, x, yModifier, imageWidth, imageHeight, spriteWidth, spriteHeight);
+    this.yModifier = yModifier;
+    this.groundPosition = height - this.imageHeight - this.yModifier;
     this.y = this.groundPosition;
     this.jumpingSpeed = 0;
     this.gravity = 5;
@@ -22,9 +22,6 @@ class Character extends Animation {
   }
   
   collisionDetection(enemy) { // returns true if the two objects are colliding
-    noFill();
-    rect(this.x, this.y, this.imageWidth, this.imageHeight);
-    rect(enemy.x, enemy.y, enemy.imageWidth, enemy.imageHeight);
     const precision = .7; // increases rect coverage accuracy by lowering the hitbox
     const collision = collideRectRect(
       this.x, 
