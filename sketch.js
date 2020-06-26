@@ -1,10 +1,13 @@
 let backgroundImage;
 let characterImage;
 let enemyImage;
+let trollImage;
+let flyingDropletImage;
 
 let scenery;
 let character;
 let enemy;
+let troll;
 let soundtrack;
 let jumpSound;
 
@@ -58,10 +61,43 @@ const enemyMatrix = [
   [312, 626],
 ];
 
+const trollMatrix = [
+  [0,0],
+  [400,0],
+  [800,0],
+  [1200,0],
+  [1600,0],
+  [0,400],
+  [400,400],
+  [800,400],
+  [1200, 400],
+  [1600, 400],
+  [0,800],
+  [400, 800],
+  [800, 800],
+  [1200, 800],
+  [1600, 800],
+  [0, 1200],
+  [400, 1200],
+  [800, 1200],
+  [1200, 1200],
+  [1600, 1200], 
+  [0, 1600],
+  [400, 1600],
+  [800, 1600],
+  [1200, 1600],
+  [1600, 1600],
+  [0, 2000],
+  [400, 2000],
+  [800, 2000],
+];
+
 function preload() {
   backgroundImage = loadImage('images/scenery/florest.png');
   characterImage = loadImage('images/character/running.png');
   enemyImage = loadImage('images/enemies/droplet.png');
+  trollImage = loadImage('images/enemies/troll.png');
+  flyingDropletImage = loadImage('images/enemies/flying-droplet.png');
   soundtrack = loadSound('sounds/game_track.mp3');
   jumpSound = loadSound('sounds/jump_sound.wav');
 }
@@ -71,6 +107,7 @@ function setup() {
   scenery = new Scenery(backgroundImage, 3);
   character = new Character(characterMatrix, characterImage, 0, 10, 110, 135, 220, 270);
   enemy = new Enemy(enemyMatrix, enemyImage, width-52, 10, 52, 52, 104, 104);
+  troll = new Enemy(trollMatrix, trollImage, width-0, 5, 200, 200, 400, 400);
   frameRate(40);
   soundtrack.loop();
 }
@@ -89,6 +126,8 @@ function draw() {
   character.appliesGravity();
   enemy.shows();
   enemy.move();
+  troll.shows();
+  troll.move();
   if (character.collisionDetection(enemy)) {
     console.log('Game Over');
     noLoop();
