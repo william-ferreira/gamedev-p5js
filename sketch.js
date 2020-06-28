@@ -3,6 +3,7 @@ let characterImage;
 let enemyImage;
 let trollImage;
 let flyingDropletImage;
+let gameOverImage;
 
 let scenery;
 let character;
@@ -121,6 +122,7 @@ function preload() {
   enemyImage = loadImage('images/enemies/droplet.png');
   trollImage = loadImage('images/enemies/troll.png');
   flyingDropletImage = loadImage('images/enemies/flying-droplet.png');
+  gameOverImage = loadImage('images/assets/game-over.png');
   soundtrack = loadSound('sounds/game_track.mp3');
   jumpSound = loadSound('sounds/jump_sound.wav');
 }
@@ -163,7 +165,7 @@ function draw() {
     enemy.move();
     
     if (character.collisionDetection(enemy)) {
-      console.log('Game Over');
+      image(gameOverImage, width/2-200, height/2.5);
       noLoop();
     }  
   });

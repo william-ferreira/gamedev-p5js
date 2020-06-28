@@ -6,10 +6,15 @@ class Character extends Animation {
     this.y = this.groundPosition;
     this.jumpingSpeed = 0;
     this.gravity = 5;
+    this.jumpHeight = -50;
+    this.jumps = 0;
   }
   
   jump() {
-    this.jumpingSpeed = -50;
+    if (this.jumps < 2) {
+      this.jumpingSpeed = this.jumpHeight;
+      this.jumps++;
+    };    
   }
   
   appliesGravity() {
@@ -18,18 +23,32 @@ class Character extends Animation {
     
     if (this.y > this.groundPosition) { // prevines character from falling off the ground 
       this.y = this.groundPosition;
+      this.jumps = 0;
     }
   }
   
   collisionDetection(enemy) { // returns true if the two objects are colliding
     const precision = .7; // increases rect coverage accuracy by lowering the hitbox
-    const collision = collideRectRect(
-      this.x, 
+    noFill();
+    rect(
+      this.x,
       this.y, 
       this.imageWidth * precision, 
       this.imageHeight * precision,
+    );
+    rect(
       enemy.x,
       enemy.y,
+      enemy.imageWidth * precision,
+      enemy.imageHeight * precision
+    );
+    const collision = collideRectRect(
+      this.x, // TODO: Improve collision detection here
+      this.y, // TODO: Improve collision detection here
+      this.imageWidth * precision, 
+      this.imageHeight * precision,
+      enemy.x, // TODO: Improve collision detection here
+      enemy.y, // TODO: Improve collision detection here
       enemy.imageWidth * precision,
       enemy.imageHeight * precision
     );
