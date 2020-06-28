@@ -8,6 +8,8 @@ let scenery;
 let character;
 let enemy;
 let troll;
+let flying_droplet;
+let score;
 let soundtrack;
 let jumpSound;
 
@@ -92,6 +94,27 @@ const trollMatrix = [
   [800, 2000],
 ];
 
+const flyingDropletMatrix = [
+  [0,0],
+  [200, 0],
+  [400, 0],
+  [0, 150],
+  [200, 150],
+  [400, 150],
+  [0, 300],
+  [200, 300],
+  [400, 300],
+  [0, 450],
+  [200, 450],
+  [400, 450],
+  [0, 600],
+  [200, 600],
+  [400, 600],
+  [0, 750],
+];
+
+const enemies = [];
+
 function preload() {
   backgroundImage = loadImage('images/scenery/florest.png');
   characterImage = loadImage('images/character/running.png');
@@ -105,9 +128,16 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   scenery = new Scenery(backgroundImage, 3);
+  score = new Score();
   character = new Character(characterMatrix, characterImage, 0, 10, 110, 135, 220, 270);
-  enemy = new Enemy(enemyMatrix, enemyImage, width-52, 10, 52, 52, 104, 104);
-  troll = new Enemy(trollMatrix, trollImage, width-0, 5, 200, 200, 400, 400);
+  const enemy = new Enemy(enemyMatrix, enemyImage, width-52, 10, 52, 52, 104, 104, 8, 200);
+  const troll = new Enemy(trollMatrix, trollImage, width-0, 5, 200, 200, 400, 400, 5, 2000);
+  const flying_droplet = new Enemy(flyingDropletMatrix, flyingDropletImage, width-52, 200, 100, 75, 200, 150, 8, 2500);
+  
+  enemies.push(enemy);
+  enemies.push(troll);
+  enemies.push(flying_droplet);
+  
   frameRate(40);
   soundtrack.loop();
 }
@@ -122,14 +152,20 @@ function keyPressed() {
 function draw() {
   scenery.shows();
   scenery.move();
+  score.show();
+  score.addPoint();
   character.shows();
   character.appliesGravity();
-  enemy.shows();
-  enemy.move();
-  troll.shows();
-  troll.move();
-  if (character.collisionDetection(enemy)) {
-    console.log('Game Over');
-    noLoop();
-  }
+  
+  
+  enemies.forEach(enemy => {
+    enemy.shows();
+    enemy.move();
+    
+    if (character.collisionDetection(enemy)) {
+      console.log('Game Over');
+      noLoop();
+    }  
+  });
+  
 }
