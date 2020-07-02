@@ -4,6 +4,7 @@ let enemyImage;
 let trollImage;
 let flyingDropletImage;
 let gameOverImage;
+let lifeImage;
 let startScreenImage;
 let startScreenFont;
 
@@ -13,12 +14,13 @@ let enemy;
 let troll;
 let flying_droplet;
 let score;
+let life;
 let soundtrack;
 let jumpSound;
 
 let game;
 
-let currentScene = 'startScreen';
+let currentScene = 'game';
 let scenes;
 let startScreen;
 let buttonManager;

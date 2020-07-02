@@ -6,6 +6,7 @@ class Game {
   setup() {
     scenery = new Scenery(backgroundImage, 3);
     score = new Score();
+    life = new Life(3, 3);
     character = new Character(characterMatrix, characterImage, 0, 10, 110, 135, 220, 270);
     const enemy = new Enemy(enemyMatrix, enemyImage, width - 52, 10, 52, 52, 104, 104, 10, 100);
     const troll = new Enemy(trollMatrix, trollImage, width - 0, 5, 200, 200, 400, 400, 10, 100);
@@ -26,6 +27,7 @@ class Game {
   draw() {
     scenery.shows();
     scenery.move();
+    life.draw()
     score.show();
     score.addPoint();
     character.shows();
@@ -48,7 +50,9 @@ class Game {
 
     if (character.collisionDetection(enemy)) {
       image(gameOverImage, width / 2 - 200, height / 2.5);
-      noLoop();
+      life.loseLife();
+      character.becomeInvencible();
+      //noLoop();
     }
   }
 }

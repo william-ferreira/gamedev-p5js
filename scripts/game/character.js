@@ -8,6 +8,7 @@ class Character extends Animation {
     this.gravity = 5;
     this.jumpHeight = -50;
     this.jumps = 0;
+    this.invencibility = false;
   }
   
   jump() {
@@ -27,7 +28,18 @@ class Character extends Animation {
     }
   }
   
+  becomeInvencible () {
+    this.invencibility = true;
+    setTimeout(() => {
+      this.invencibility = false
+    }, 1000)
+  }
+  
   collisionDetection(enemy) { // returns true if the two objects are colliding
+    if(this.invencibility) {
+      return false;
+    }
+    
     const precision = .7; // increases rect coverage accuracy by lowering the hitbox
     noFill();
     rect(

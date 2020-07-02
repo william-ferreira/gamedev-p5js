@@ -6,6 +6,7 @@ function preload() {
   trollImage = loadImage('images/enemies/troll.png');
   flyingDropletImage = loadImage('images/enemies/flying-droplet.png');
   gameOverImage = loadImage('images/assets/game-over.png');
+  lifeImage = loadImage('images/assets/heart.png');
   startScreenFont = loadFont('images/assets/startscreenfont.otf');
   soundtrack = loadSound('sounds/game_track.mp3');
   jumpSound = loadSound('sounds/jump_sound.wav');
