@@ -1,0 +1,25 @@
+{
+"settings": {
+  "maxLifes": 10,
+  "initialLifes": 10
+},
+"map": [
+    {
+      "enemy": 0,
+      "speed": 10
+    },
+    {
+      "enemy": 1,
+      "speed": 30
+    },
+    {
+      "enemy": 1,
+      "speed": 15
+    },
+
+    {
+      "enemy": 2,
+      "speed": 40
+    }
+  ]
+}

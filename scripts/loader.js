@@ -10,4 +10,5 @@ function preload() {
   startScreenFont = loadFont('images/assets/startscreenfont.otf');
   soundtrack = loadSound('sounds/game_track.mp3');
   jumpSound = loadSound('sounds/jump_sound.wav');
+  cartridge = loadJSON('cartridge/cartridge.json');
 }

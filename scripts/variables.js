@@ -15,6 +15,8 @@ let troll;
 let flying_droplet;
 let score;
 let life;
+let map = [];
+let cartridge;
 let soundtrack;
 let jumpSound;
 
