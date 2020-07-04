@@ -1,7 +1,8 @@
 function preload() {
-  backgroundImage = loadImage('images/scenery/field.png');
+  backgroundImage = loadImage('images/scenery/field.jpg');
   startScreenImage = loadImage('images/scenery/startscreen.png');
   characterImage = loadImage('images/character/running.png');
+  character2Image = loadImage('images/character/male-character.png');
   enemyImage = loadImage('images/enemies/droplet.png');
   trollImage = loadImage('images/enemies/troll.png');
   flyingDropletImage = loadImage('images/enemies/flying-droplet.png');

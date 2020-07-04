@@ -41,7 +41,7 @@ class Character extends Animation {
     }
     
     const precision = .7; // increases rect coverage accuracy by lowering the hitbox
-    noFill();
+    /*noFill();
     rect(
       this.x,
       this.y, 
@@ -53,7 +53,7 @@ class Character extends Animation {
       enemy.y,
       enemy.imageWidth * precision,
       enemy.imageHeight * precision
-    );
+    );*/
     const collision = collideRectRect(
       this.x, // TODO: Improve collision detection here
       this.y, // TODO: Improve collision detection here

@@ -1,5 +1,6 @@
 let backgroundImage;
 let characterImage;
+let character2Image;
 let enemyImage;
 let trollImage;
 let flyingDropletImage;
@@ -10,6 +11,7 @@ let startScreenFont;
 
 let scenery;
 let character;
+let character2;
 let enemy;
 let troll;
 let flying_droplet;
@@ -44,6 +46,25 @@ const characterMatrix = [
   [220, 810],
   [440, 810],
   [660, 810],
+];
+
+const character2Matrix = [
+  [0, 0],
+  [0, 0],
+  [0, 0],
+  [0, 0],
+  [204, 0],
+  [204, 0],
+  [204, 0],
+  [204, 0],
+  [408, 0],
+  [408, 0],
+  [408, 0],
+  [408, 0],
+  [612, 0],
+  [612, 0],
+  [612, 0],
+  [612, 0],
 ];
 
 const enemyMatrix = [
