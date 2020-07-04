@@ -1,5 +1,5 @@
 function preload() {
-  backgroundImage = loadImage('images/scenery/florest.png');
+  backgroundImage = loadImage('images/scenery/field.png');
   startScreenImage = loadImage('images/scenery/startscreen.png');
   characterImage = loadImage('images/character/running.png');
   enemyImage = loadImage('images/enemies/droplet.png');
